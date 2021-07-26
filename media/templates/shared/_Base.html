@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Akbar | {{ view.page_name }}</title>
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/color-switcher-design.css' %}" rel="stylesheet">
+    <link id="theme-color-file" href="{% static 'css/color-themes/default-theme.css' %}" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <script src="{% static 'js/respond.js' %}"></script>
+
+</head>
+
+<body>
+
+{% block body %}
+
+{% endblock %}
+
+<!-- Scroll To Top -->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+
+<!-- Color Palate / Color Switcher -->
+<div class="color-palate">
+    <div class="inner-palate">
+        <div class="color-trigger"><i class="fa fa-cog"></i></div>
+        <div class="color-palate-head"><h5>فوق العاده شروع کنید!</h5></div>
+        <div class="various-color clearfix">
+            <div class="colors-list">
+                <h6 class="text-right">رنگ قالب</h6>
+                <span class="palate default-color active" data-theme-file="css/{% static 'color-themes/default-theme.css' %}"></span>
+                <span class="palate brunette-color" data-theme-file="{% static 'css/color-themes/brunette.html' %}"></span>
+                <span class="palate caramel-color" data-theme-file="{% static 'css/color-themes/caramel.css' %}"></span>
+                <span class="palate carob-color" data-theme-file="{% static 'css/color-themes/carob.css' %}"></span>
+                <span class="palate cedar-color" data-theme-file="{% static 'css/color-themes/cedar.css' %}"></span>
+                <span class="palate chocolate-color" data-theme-file="{% static 'css/color-themes/chocolate.css' %}"></span>
+                <span class="palate cinnamon-color" data-theme-file="{% static 'css/color-themes/cinnamon.css' %}"></span>
+                <span class="palate coffee-color" data-theme-file="{% static 'css/color-themes/coffee.css' %}"></span>
+                <span class="palate gingerbread-color" data-theme-file="{% static 'css/color-themes/gingerbread.css' %}"></span>
+                <span class="palate hickory-color" data-theme-file="{% static 'css/color-themes/hickory.css' %}"></span>
+                <span class="palate mocha-color" data-theme-file="{% static 'css/color-themes/mocha.css' %}"></span>
+                <span class="palate peanut-color" data-theme-file="{% static 'css/color-themes/peanut.css' %}"></span>
+                <span class="palate pecan-color" data-theme-file="{% static 'css/color-themes/pecan.css' %}"></span>
+                <span class="palate penny-color" data-theme-file="{% static 'css/color-themes/penny.css' %}"></span>
+                <span class="palate syrup-color" data-theme-file="{% static 'css/color-themes/syrup.css' %}"></span>
+                <span class="palate tawny-color" data-theme-file="{% static 'css/color-themes/tawny.css' %}"></span>
+                <span class="palate tortilla-color" data-theme-file="{% static 'css/color-themes/tortilla.css' %}"></span>
+                <span class="palate umber-color" data-theme-file="{% static 'css/color-themes/umber.css' %}"></span>
+                <span class="palate walnut-color" data-theme-file="{% static 'css/color-themes/walnut.css' %}"></span>
+                <span class="palate wood-color" data-theme-file="{% static 'css/color-themes/wood.css' %}"></span>
+            </div>
+        </div>
+        <div class="lower-options">
+            <h6 class="text-right">نوع صفحه</h6>
+            <ul class="box-version option-box">
+                <li class="active">تمام صفحه</li>
+                <li class="box">جعبه‌ای</li>
+            </ul>
+            <div class="box-mode-bg">
+                <h6 class="text-right">پس زمینه جعبه</h6>
+                <ul class="clearfix">
+                    <li class="active" style="background-image: url({% static 'images/background/boxed-bg/1.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/2.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/3.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/4.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/5.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/6.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/7.png' %});"></li>
+                    <li style="background-image: url({% static 'images/background/boxed-bg/8.png' %});"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Color Switcher -->
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/color-settings.js' %}"></script>
+{% block scripts %}
+{% endblock %}
+
+</body>
+
+
+</html>

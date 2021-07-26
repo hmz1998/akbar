@@ -8,6 +8,8 @@ from .base import (
 # ############## #
 #   EXTENSIONS   #
 # ############## #
+INSTALLED_APPS.append('admin_interface')
+INSTALLED_APPS.append('colorfield')
 
 # INSTALLED_APPS.append('painless')
 
@@ -19,16 +21,16 @@ from .base import (
 #
 # INSTALLED_APPS.append('fontawesome-free')
 #
-# INSTALLED_APPS.append('corsheaders')
+INSTALLED_APPS.append('corsheaders')
 #
-# INSTALLED_APPS.append('admin_honeypot')
+INSTALLED_APPS.append('admin_honeypot')
 #
 # INSTALLED_APPS.append('django.contrib.admindocs')
 # INSTALLED_APPS.append('django_extensions')
 #
-# INSTALLED_APPS.append('admin_interface')
-# INSTALLED_APPS.append('colorfield', )
+
 # INSTALLED_APPS.append('sorl.thumbnail', )
+INSTALLED_APPS.append('django.contrib.admin')
 
 # #################### #
 #     HTML MINIFY      #
@@ -61,7 +63,7 @@ STATICFILES_FINDERS = (
 # #
 # INSTALLED_APPS.append('work')
 # #
-# INSTALLED_APPS.append('pages')
+INSTALLED_APPS.append('pages')
 
 # ######################### #
 #       RestFramework       #
