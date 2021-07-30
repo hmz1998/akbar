@@ -1,0 +1,37 @@
+<!--Fluid Section One-->
+<section class="fluid-section-one">
+    <div class="outer-container clearfix">
+        <!--Content Column-->
+        <div class="content-column">
+            <div class="inner-column">
+                <div class="sec-title">
+                    <h2>{{ choose_us.title }}</h2>
+                </div>
+                <div class="text-box">
+                    {{ choose_us.description|safe|linebreaksbr }}
+                </div>
+                <div class="row">
+                    {% if supports %}
+                        <!-- Feature Block -->
+                        {% for support in supports %}
+                            <div class="feature-block-two col-lg-6 col-md-6">
+                                <div class="inner-box">
+                                    <span class="{{ support.icon }}"></span>
+                                    <h4>{{ support.title }}</h4>
+                                    <div class="text">{{ support.description }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        <!--Image Column-->
+        <div class="image-column" style="background-image:url({{ choose_us.picture.url }});">
+            <figure class="image-box"><img src="{{ choose_us.picture.url }}" alt="{{ choose_us.picture_alternate_txt }}"></figure>
+        </div>
+    </div>
+</section>
+<!-- End Fluid Section -->

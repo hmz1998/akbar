@@ -22,6 +22,7 @@ urlpatterns = [
     re_path(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     re_path(r'^secret/', admin.site.urls),
     re_path(r'^', include('pages.urls')),
+    re_path(r'^', include('cms.urls')),
 ]
 
 admin.site.site_header = 'پنل مدیریت اکبر'

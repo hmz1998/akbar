@@ -10,6 +10,7 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/toastr.css' %}">
     <link href="{% static 'css/color-switcher-design.css' %}" rel="stylesheet">
     <link id="theme-color-file" href="{% static 'css/color-themes/default-theme.css' %}" rel="stylesheet">
     {% block styles %}
@@ -90,6 +91,7 @@
 <!-- End Color Switcher -->
 
 <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.blockUI.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/jquery.fancybox.js' %}"></script>
@@ -99,10 +101,10 @@
 <script src="{% static 'js/appear.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/color-settings.js' %}"></script>
+<script src="{% static 'js/toastr.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 {% block scripts %}
 {% endblock %}
 
 </body>
-
-
 </html>
