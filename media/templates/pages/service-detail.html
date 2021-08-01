@@ -1,0 +1,74 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+    {{ view.page_name }} | {{ service.title }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- Service Detail Section -->
+    <div class="service-detail-section">
+        <div class="auto-container">
+            <div class="row">
+                <!--Content Side-->
+                <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                    <div class="service-detail">
+                        <!-- Image Box -->
+                        <div class="image-box">
+                            <div class="image wow fadeIn">
+                                <a href="{{ service.picture.url }}" class="lightbox-image" data-fancybox="gallery">
+                                    <img src="{{ service.picture.url }}" alt="">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--Title Style One-->
+                        <div class="content-box">
+                            <h2>{{ service.title }}</h2>
+                            {{ service.description|safe }}
+                        </div>
+                    </div><!-- Service Detail -->
+                </div>
+
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                    <aside class="sidebar services-sidebar">
+
+                        <!-- Services Cat List -->
+                        <div class="sidebar-widget categories">
+                            <ul class="category-list">
+                                <li><a href="services.html">سرویس ها</a></li>
+                                {% for item in services %}
+                                    <li {% if item == service %}class="active"{% endif %}>
+                                        <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <!-- Brochure -->
+                        <div class="sidebar-widget help-box">
+                            <div class="inner-box" style="background-image: url({% static 'images/resource/help-bg.jpg' %});">
+                                <h6>آیا نیاز به مشاوره دارید؟</h6>
+                                <ul class="info-box">
+                                    <li><span class="icon fa fa-envelope"></span> <a href="mailto:hello@example.com">{{ setting.email }}</a></li>
+                                    <li><span class="icon fa fa-phone"></span> <a href="tel:(021)2353256">{{ setting.phone_number }}</a></li>
+                                </ul>
+                                <a class="theme-btn btn-style-three" href="contact.html"><span class="btn-title">تماس باما</span> </a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Service Detail Section -->
+
+
+    {% include 'partials/brands.html' %}
+
+{% endblock %}

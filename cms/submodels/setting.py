@@ -4,14 +4,16 @@ from django.utils.translation import ugettext_lazy as _
 from location_field.models.plain import PlainLocationField
 from django.core.validators import (
     MinLengthValidator,
-    RegexValidator
+    RegexValidator, FileExtensionValidator, MaxLengthValidator
 )
+from sorl.thumbnail import ImageField
 
 from painless.utils.models.common import (
     TimeStampModelMixin,
     LogoModelMixin
 )
 from painless.utils.regex.patterns import PERSIAN_PHONE_NUMBER_PATTERN
+from painless.utils.upload.path import date_directory_path
 
 
 class Setting(TimeStampModelMixin, LogoModelMixin):
@@ -93,6 +95,36 @@ class Setting(TimeStampModelMixin, LogoModelMixin):
         max_length=300
     )
 
+    header_cover = ImageField(
+        _("کاور هدر"),
+        upload_to=date_directory_path,
+        height_field='header_cover_width_field',
+        width_field='header_cover_height_field',
+        max_length=110,
+        validators=[FileExtensionValidator(allowed_extensions=['JPG', 'JPEG', 'PNG', 'jpg', 'jpeg', 'png'])],
+        null=True, blank=True
+    )
+
+    header_cover_alt_text = models.CharField(
+        _("توضیحات کاور هدر"),
+        max_length=110,
+        validators=[
+            MaxLengthValidator(150),
+            MinLengthValidator(3)
+        ],
+        null=True, blank=True
+    )
+    header_cover_width_field = models.PositiveSmallIntegerField(
+        _("Width Field"),
+        editable=False,
+        null=True, blank=True
+    )
+    header_cover_height_field = models.PositiveSmallIntegerField(
+        _("Height Field"),
+        editable=False,
+        null=True, blank=True
+    )
+
     enamad = models.TextField(
         _("نماد اعتماد"),
         null=True,
@@ -111,3 +143,8 @@ class Setting(TimeStampModelMixin, LogoModelMixin):
 
     def __str__(self):
         return self.domain
+
+    @property
+    def get_location(self):
+        location = self.location.split(",")
+        return location

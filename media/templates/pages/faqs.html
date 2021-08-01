@@ -1,0 +1,47 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- FAQ Section -->
+    <section class="faqs-section alternate">
+        <div class="auto-container">
+            <div class="row">
+                <!-- FAQ Column -->
+                <div class="faq-column col-lg-12 col-md-12 col-sm-12">
+                    <ul class="accordion-box">
+                        {% for faq in faqs %}
+                            <li class="accordion block{% if forloop.first %} active-block{% endif %}">
+                                <div class="acc-btn{% if forloop.first %} active{% endif %}">{{ faq.question }}
+                                    <div class="icon fa fa-plus-circle"></div>
+                                </div>
+                                <div class="acc-content{% if forloop.first %} current{% endif %}">
+                                    <div class="content">
+                                        <div class="text">
+                                            {{ faq.answer|safe|linebreaksbr }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--End FAQ Section -->
+
+    {% include 'partials/contact.html' %}
+
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}

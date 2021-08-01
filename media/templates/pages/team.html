@@ -1,0 +1,27 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    {% if founders %}
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="auto-container">
+                <div class="row">
+                    {% include 'partials/team.html' %}
+                </div>
+            </div>
+        </section>
+        <!--End Team Section -->
+    {% endif %}
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}

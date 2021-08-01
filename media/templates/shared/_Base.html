@@ -1,11 +1,12 @@
 {% load static %}
+{% load thumbnail %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Akbar | {{ view.page_name }}</title>
+    <title>{{ setting.title }} | {% block title %}{% endblock %}</title>
 
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
@@ -28,11 +29,22 @@
 </head>
 
 <body>
+<div class="page-wrapper rtl">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="subloader"></div>
+    </div>
 
-{% block body %}
 
-{% endblock %}
+    {% include 'partials/Header.html' %}
 
+    {% block body %}
+
+    {% endblock %}
+
+    {% include 'partials/Footer.html' %}
+
+</div>
 <!-- Scroll To Top -->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 

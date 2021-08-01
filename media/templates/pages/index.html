@@ -1,743 +1,285 @@
 {% extends 'shared/_Base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
 
 {% block body %}
 
-    <div class="page-wrapper rtl">
-        <!-- Preloader -->
-        <div class="preloader"></div>
-
-        {% include 'partials/Header.html' %}
-        {% if sliders %}
-            <!-- Banner Section -->
-            <section class="banner-section">
-                <div class="banner-carousel owl-carousel owl-theme">
-                    <!-- Slide Item -->
-                    {% for slider in sliders %}
-                        <div class="slide-item">
-                            <div class="image-layer" style="background-image:url({{ slider.picture.url }})"></div>
-                            <div class="content-box">
-                                <div class="content">
-                                    <div class="auto-container">
-                                        {% if slider.sub_title %}
-                                            <span class="title">{{ slider.sub_title }}</span>
-                                        {% endif %}
-                                        <h2>{{ slider.title|safe|linebreaksbr }}</h2>
-                                        <div class="text">
-                                            {{ slider.description|safe|linebreaksbr }}
+    {% if sliders %}
+        <!-- Banner Section -->
+        <section class="banner-section">
+            <div class="banner-carousel owl-carousel owl-theme">
+                <!-- Slide Item -->
+                {% for slider in sliders %}
+                    <div class="slide-item">
+                        <div class="image-layer" style="background-image:url({{ slider.picture.url }})"></div>
+                        <div class="content-box">
+                            <div class="content">
+                                <div class="auto-container">
+                                    {% if slider.sub_title %}
+                                        <span class="title">{{ slider.sub_title }}</span>
+                                    {% endif %}
+                                    <h2>{{ slider.title|safe|linebreaksbr }}</h2>
+                                    <div class="text">
+                                        {{ slider.description|safe|linebreaksbr }}
+                                    </div>
+                                    {% if slider.btn and slider.link %}
+                                        <div class="btn-box">
+                                            <a href="{{ slider.link }}" class="theme-btn btn-style-two"><span class="btn-title">{{ slider.btn }}</span></a>
                                         </div>
-                                        {% if slider.btn and slider.link %}
-                                            <div class="btn-box">
-                                                <a href="{{ slider.link }}" class="theme-btn btn-style-two"><span class="btn-title">{{ slider.btn }}</span></a>
-                                            </div>
-                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <!--END Banner Section -->
+    {% endif %}
+    {% if about %}
+        <!-- About Us -->
+        <section class="about-us">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <!-- Content Column -->
+                    <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <h2>درباره‌ما</h2>
+                            </div>
+
+                            <div class="about-years"><span class="years">{{ about.experience }}</span>
+                                <h3>سال تجربه کاری</h3></div>
+                            <div class="text-box">
+                                {{ about.description|safe }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="video-box wow fadeIn">
+                                <figure class="image">
+                                    {% thumbnail about.picture "570x570" format="PNG" as im %}
+                                        <img src="{{ im.url }}" alt="{{ about.picture_alternate_txt }}">
+                                    {% endthumbnail %}
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End About Us -->
+    {% endif %}
+    {#        <!-- Services Section -->#}
+    {#        <section class="services-section">#}
+    {#            <div class="auto-container">#}
+    {#                <div class="row">#}
+    {#                    <div class="col-lg-8 col-md-12">#}
+    {#                        <div class="sec-title">#}
+    {#                            <h2>Our Services</h2>#}
+    {#                            <div class="text">What We Provide For You check now and deside it<br> do you want now this</div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                    <div class="col-lg-4 col-md-12">#}
+    {#                        <div class="right-btn text-right">#}
+    {#                            <a href="about.html" class="theme-btn btn-style-two"><span class="btn-title">All Services</span></a>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#                <div class="carousel-outer">#}
+    {#                    <!-- Services Carousel -->#}
+    {#                    <div class="services-carousel owl-carousel owl-theme">#}
+    {#                        <!-- service Block -->#}
+    {#                        <div class="service-block">#}
+    {#                            <div class="inner-box">#}
+    {#                                <div class="image-box">#}
+    {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-1.jpg' %}" alt=""></a>#}
+    {#                                    </figure>#}
+    {#                                </div>#}
+    {#                                <div class="lower-content">#}
+    {#                                    <h4><a href="service-detail.html">General Carpentry</a></h4>#}
+    {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
+    {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {##}
+    {#                        <!-- service Block -->#}
+    {#                        <div class="service-block">#}
+    {#                            <div class="inner-box">#}
+    {#                                <div class="image-box">#}
+    {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-2.jpg' %}" alt=""></a>#}
+    {#                                    </figure>#}
+    {#                                </div>#}
+    {#                                <div class="lower-content">#}
+    {#                                    <h4><a href="service-detail.html">Furniture Remodeling</a></h4>#}
+    {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
+    {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {##}
+    {#                        <!-- service Block -->#}
+    {#                        <div class="service-block">#}
+    {#                            <div class="inner-box">#}
+    {#                                <div class="image-box">#}
+    {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-3.jpg' %}" alt=""></a>#}
+    {#                                    </figure>#}
+    {#                                </div>#}
+    {#                                <div class="lower-content">#}
+    {#                                    <h4><a href="service-detail.html">Manufactur Furniture</a></h4>#}
+    {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
+    {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {##}
+    {#                        <!-- service Block -->#}
+    {#                        <div class="service-block">#}
+    {#                            <div class="inner-box">#}
+    {#                                <div class="image-box">#}
+    {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-4.jpg' %}" alt=""></a>#}
+    {#                                    </figure>#}
+    {#                                </div>#}
+    {#                                <div class="lower-content">#}
+    {#                                    <h4><a href="service-detail.html">Hang Paintings</a></h4>#}
+    {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
+    {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {##}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </section>#}
+    {#        <!-- End service Section -->#}
+
+
+    <!-- Projects Section -->
+    <section class="projects-section-two">
+        <div class="auto-container">
+            <div class="sec-title text-center">
+                <h2>پروژه‌های اخیر</h2>
+            </div>
+            <!--Sortable Masonry-->
+            <div class="sortable-masonry">
+                <!--Filter-->
+                <div class="filters">
+                    <ul class="filter-tabs filter-btns clearfix">
+                        <li class="active filter" data-role="button" data-filter=".all">همه پروژه‌ها</li>
+                        {% for category in projects_categories %}
+                            <li class="filter" data-role="button" data-filter=".{{ category.sku }}">{{ category.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="items-container row">
+                    {% for project in projects %}
+                        <div class="project-block-two all{% for category in project.categories.all %} {{ category.sku }}{% endfor %} col-lg-4 col-md-6 col-sm-12">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image">
+                                        {% thumbnail project.picture "380" format="PNG" as im %}
+                                            <img src="{{ im.url }}" alt="{{ project.picture_alternate_text }}">
+                                        {% endthumbnail %}
+                                    </figure>
+                                </div>
+                                <div class="overlay-box">
+                                    <div class="overlay-inner">
+                                        <h4>{{ project.title }}</h4>
+                                        <div class="icon-box">
+                                            <a href="{{ project.picture.url }}" class="lightbox-image" data-fancybox="gallery"><span
+                                                    class="icon fa fa-expand-arrows-alt"></span></a>
+                                            <a href="{{ project.get_absolute_url }}"><span class="icon fa fa-search"></span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-            </section>
-            <!--END Banner Section -->
-        {% endif %}
-        {% if about %}
-            <!-- About Us -->
-            <section class="about-us">
-                <div class="auto-container">
-                    <div class="row clearfix">
-                        <!-- Content Column -->
-                        <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                            <div class="inner-column">
-                                <div class="sec-title">
-                                    <h2>درباره‌ما</h2>
-                                </div>
-
-                                <div class="about-years"><span class="years">{{ about.experience }}</span>
-                                    <h3>سال تجربه کاری</h3></div>
-                                <div class="text-box">
-                                    {{ about.description|safe }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                            <div class="inner-column">
-                                <div class="video-box wow fadeIn">
-                                    <figure class="image">
-                                        {% thumbnail about.picture "570x570" format="PNG" as im %}
-                                            <img src="{{ im.url }}" alt="{{ about.picture_alternate_txt }}">
-                                        {% endthumbnail %}
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- End About Us -->
-        {% endif %}
-        {#        <!-- Services Section -->#}
-        {#        <section class="services-section">#}
-        {#            <div class="auto-container">#}
-        {#                <div class="row">#}
-        {#                    <div class="col-lg-8 col-md-12">#}
-        {#                        <div class="sec-title">#}
-        {#                            <h2>Our Services</h2>#}
-        {#                            <div class="text">What We Provide For You check now and deside it<br> do you want now this</div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                    <div class="col-lg-4 col-md-12">#}
-        {#                        <div class="right-btn text-right">#}
-        {#                            <a href="about.html" class="theme-btn btn-style-two"><span class="btn-title">All Services</span></a>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {#                <div class="carousel-outer">#}
-        {#                    <!-- Services Carousel -->#}
-        {#                    <div class="services-carousel owl-carousel owl-theme">#}
-        {#                        <!-- service Block -->#}
-        {#                        <div class="service-block">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-1.jpg' %}" alt=""></a>#}
-        {#                                    </figure>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content">#}
-        {#                                    <h4><a href="service-detail.html">General Carpentry</a></h4>#}
-        {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
-        {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- service Block -->#}
-        {#                        <div class="service-block">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-2.jpg' %}" alt=""></a>#}
-        {#                                    </figure>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content">#}
-        {#                                    <h4><a href="service-detail.html">Furniture Remodeling</a></h4>#}
-        {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
-        {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- service Block -->#}
-        {#                        <div class="service-block">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-3.jpg' %}" alt=""></a>#}
-        {#                                    </figure>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content">#}
-        {#                                    <h4><a href="service-detail.html">Manufactur Furniture</a></h4>#}
-        {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
-        {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- service Block -->#}
-        {#                        <div class="service-block">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><a href="service-detail.html"><img src="{% static 'images/resource/service-4.jpg' %}" alt=""></a>#}
-        {#                                    </figure>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content">#}
-        {#                                    <h4><a href="service-detail.html">Hang Paintings</a></h4>#}
-        {#                                    <div class="text">Professionals work with a variety of all materials, in a variety of settings–indoor and outdoor.</div>#}
-        {#                                    <div class="btn-box"><a href="service-detail.html" class="read-more">Read More <span class="fa fa-arrow-right"></span></a>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {##}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </section>#}
-        {#        <!-- End service Section -->#}
-
-
-        {#        <!-- Projects Section -->#}
-        {#        <section class="projects-section-two">#}
-        {#            <div class="auto-container">#}
-        {#                <div class="sec-title text-center">#}
-        {#                    <h2>Latest Projects</h2>#}
-        {#                    <div class="text">Always honest rules of cooperation <br>We Follow them</div>#}
-        {#                </div>#}
-        {#                <!--Sortable Masonry-->#}
-        {#                <div class="sortable-masonry">#}
-        {#                    <!--Filter-->#}
-        {#                    <div class="filters">#}
-        {#                        <ul class="filter-tabs filter-btns clearfix">#}
-        {#                            <li class="active filter" data-role="button" data-filter=".all">All Cases</li>#}
-        {#                            <li class="filter" data-role="button" data-filter=".office-renovation">Office Renovation</li>#}
-        {#                            <li class="filter" data-role="button" data-filter=".exterior-design">Exterior Design</li>#}
-        {#                            <li class="filter" data-role="button" data-filter=".interior-design">Interior Design</li>#}
-        {#                            <li class="filter" data-role="button" data-filter=".modeling-flooring">Modeling Flooring</li>#}
-        {#                            <li class="filter" data-role="button" data-filter=".celing-roofing">Celing & Roofing</li>#}
-        {#                        </ul>#}
-        {#                    </div>#}
-        {##}
-        {#                    <div class="items-container row">#}
-        {#                        <!-- Portfolio Block -->#}
-        {#                        <div class="project-block-two all masonry-item exterior-design modeling-flooring col-lg-4 col-md-6 col-sm-12">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/gallery/2-1.jpg' %}" alt=""></figure>#}
-        {#                                </div>#}
-        {#                                <div class="overlay-box">#}
-        {#                                    <div class="overlay-inner">#}
-        {#                                        <h4>Wooden Godown</h4>#}
-        {#                                        <div class="icon-box">#}
-        {#                                            <a href="{% static 'images/gallery/2-1.jpg' %}" class="lightbox-image" data-fancybox="gallery"><span#}
-        {#                                                    class="icon fa fa-expand-arrows-alt"></span></a>#}
-        {#                                            <a href="project-detail.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- Portfolio Block -->#}
-        {#                        <div class="project-block-two all masonry-item interior-design office-renovation col-lg-4 col-md-6 col-sm-12">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/gallery/2-2.jpg' %}" alt=""></figure>#}
-        {#                                </div>#}
-        {#                                <div class="overlay-box">#}
-        {#                                    <div class="overlay-inner">#}
-        {#                                        <h4>Wooden Godown</h4>#}
-        {#                                        <div class="icon-box">#}
-        {#                                            <a href="{% static 'images/gallery/2-2.jpg' %}" class="lightbox-image" data-fancybox="gallery"><span#}
-        {#                                                    class="icon fa fa-expand-arrows-alt"></span></a>#}
-        {#                                            <a href="project-detail.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- Portfolio Block -->#}
-        {#                        <div class="project-block-two all masonry-item celing-roofing office-renovation col-lg-4 col-md-6 col-sm-12">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/gallery/2-3.jpg' %}" alt=""></figure>#}
-        {#                                </div>#}
-        {#                                <div class="overlay-box">#}
-        {#                                    <div class="overlay-inner">#}
-        {#                                        <h4>Wooden Godown</h4>#}
-        {#                                        <div class="icon-box">#}
-        {#                                            <a href="{% static 'images/gallery/2-3.jpg' %}" class="lightbox-image" data-fancybox="gallery"><span#}
-        {#                                                    class="icon fa fa-expand-arrows-alt"></span></a>#}
-        {#                                            <a href="project-detail.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- Portfolio Block -->#}
-        {#                        <div class="project-block-two all masonry-item modeling-flooring interior-design exterior-design col-lg-8 col-md-6 col-sm-12">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/gallery/2-4.jpg' %}" alt=""></figure>#}
-        {#                                </div>#}
-        {#                                <div class="overlay-box">#}
-        {#                                    <div class="overlay-inner">#}
-        {#                                        <h4>Wooden Godown</h4>#}
-        {#                                        <div class="icon-box">#}
-        {#                                            <a href="{% static 'images/gallery/2-4.jpg' %}" class="lightbox-image" data-fancybox="gallery"><span#}
-        {#                                                    class="icon fa fa-expand-arrows-alt"></span></a>#}
-        {#                                            <a href="project-detail.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- Portfolio Block -->#}
-        {#                        <div class="project-block-two all masonry-item celing-roofing office-renovation col-lg-6 col-md-6 col-sm-12">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/gallery/2-5.jpg' %}" alt=""></figure>#}
-        {#                                </div>#}
-        {#                                <div class="overlay-box">#}
-        {#                                    <div class="overlay-inner">#}
-        {#                                        <h4>Wooden Godown</h4>#}
-        {#                                        <div class="icon-box">#}
-        {#                                            <a href="{% static 'images/gallery/2-5.jpg' %}" class="lightbox-image" data-fancybox="gallery"><span#}
-        {#                                                    class="icon fa fa-expand-arrows-alt"></span></a>#}
-        {#                                            <a href="project-detail.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- Portfolio Block -->#}
-        {#                        <div class="project-block-two all masonry-item celing-roofing modeling-flooring interior-design exterior-design col-lg-6 col-md-6 col-sm-12">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/gallery/2-6.jpg' %}" alt=""></figure>#}
-        {#                                </div>#}
-        {#                                <div class="overlay-box">#}
-        {#                                    <div class="overlay-inner">#}
-        {#                                        <h4>Wooden Godown</h4>#}
-        {#                                        <div class="icon-box">#}
-        {#                                            <a href="{% static 'images/gallery/2-6.jpg' %}" class="lightbox-image" data-fancybox="gallery"><span#}
-        {#                                                    class="icon fa fa-expand-arrows-alt"></span></a>#}
-        {#                                            <a href="project-detail.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {#                <div class="btn-box text-center">#}
-        {#                    <a href="projects.html" class="theme-btn btn-style-two"><span class="btn-title">All Projects</span></a>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </section>#}
-        {#        <!-- End Projects Section -->#}
-
-        {% if choose_us %}
-            {% include 'partials/ChooseUs.html' %}
-        {% endif %}
-
-        {% if founders %}
-            <!-- Team Section -->
-            <section class="team-section">
-                <div class="auto-container">
-                    <div class="sec-title text-center">
-                        <h2>تیم ما</h2>
-                        <div class="text">ما یک تیم خبره داریم<br>که رویا را برای شما به واقعیت تبدیل می کند.</div>
-                    </div>
-
-                    <div class="row">
-                        {% for founder in founders %}
-                            <div class="team-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-                                <div class="image-box">
-                                    <figure class="image">
-                                        {% thumbnail founder.picture "370" format="PNG" as im %}
-                                            <img src="{{ im.url }}" alt="{{ founder.picture_alternate_txt }}">
-                                        {% endthumbnail %}
-                                    </figure>
-                                    <div class="info-box">
-                                        <h4 class="name">{{ founder.name }}</h4>
-                                        <span class="designation">{{ founder.job }}</span>
-                                        <ul class="social-links">
-                                            {% for social in founder.socials.all %}
-                                                <li><a href="{{ social.link }}"><span class="fab fa-{{ social.name }}"></span></a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
-            <!--End Team Section -->
-        {% endif %}
-        {#        <!-- Products Section -->#}
-        {#        <section class="products-section" id="shop">#}
-        {#            <div class="auto-container">#}
-        {#                <div class="sec-title">#}
-        {#                    <h2>Our Products</h2>#}
-        {#                    <div class="text">What We Provide For You check now and deside it <br>do you want now this</div>#}
-        {#                </div>#}
-        {##}
-        {#                <div class="carousel-outer">#}
-        {#                    <!-- Products Carousel -->#}
-        {#                    <div class="products-carousel owl-carousel owl-theme">#}
-        {#                        <!-- News block -->#}
-        {#                        <div class="shop-item">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/resource/products/1.jpg' %}" alt=""></figure>#}
-        {#                                    <div class="overlay-box">#}
-        {#                                        <div class="tag">sales</div>#}
-        {#                                        <div class="btn-box">#}
-        {#                                            <a href="shopping-cart.html"><span class="icon fa fa-shopping-basket"></span></a>#}
-        {#                                            <a href="shop-single.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content clearfix">#}
-        {#                                    <h4 class="name"><a href="shop-single.html">Product Title</a></h4>#}
-        {#                                    <span class="price">$30.00 <del>$50.00</del></span>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- News block -->#}
-        {#                        <div class="shop-item">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/resource/products/2.jpg' %}" alt=""></figure>#}
-        {#                                    <div class="overlay-box">#}
-        {#                                        <div class="btn-box">#}
-        {#                                            <a href="shopping-cart.html"><span class="icon fa fa-shopping-basket"></span></a>#}
-        {#                                            <a href="shop-single.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content clearfix">#}
-        {#                                    <h4 class="name"><a href="shop-single.html">Product Title</a></h4>#}
-        {#                                    <span class="price">$30.00 <del>$50.00</del></span>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- News block -->#}
-        {#                        <div class="shop-item">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/resource/products/3.jpg' %}" alt=""></figure>#}
-        {#                                    <div class="overlay-box">#}
-        {#                                        <div class="btn-box">#}
-        {#                                            <a href="shopping-cart.html"><span class="icon fa fa-shopping-basket"></span></a>#}
-        {#                                            <a href="shop-single.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content clearfix">#}
-        {#                                    <h4 class="name"><a href="shop-single.html">Product Title</a></h4>#}
-        {#                                    <span class="price">$30.00 <del>$50.00</del></span>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- News block -->#}
-        {#                        <div class="shop-item">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/resource/products/4.jpg' %}" alt=""></figure>#}
-        {#                                    <div class="overlay-box">#}
-        {#                                        <div class="btn-box">#}
-        {#                                            <a href="shopping-cart.html"><span class="icon fa fa-shopping-basket"></span></a>#}
-        {#                                            <a href="shop-single.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content clearfix">#}
-        {#                                    <h4 class="name"><a href="shop-single.html">Product Title</a></h4>#}
-        {#                                    <span class="price">$30.00 <del>$50.00</del></span>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- News block -->#}
-        {#                        <div class="shop-item">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/resource/products/5.jpg' %}" alt=""></figure>#}
-        {#                                    <div class="overlay-box">#}
-        {#                                        <div class="btn-box">#}
-        {#                                            <a href="shopping-cart.html"><span class="icon fa fa-shopping-basket"></span></a>#}
-        {#                                            <a href="shop-single.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content clearfix">#}
-        {#                                    <h4 class="name"><a href="shop-single.html">Product Title</a></h4>#}
-        {#                                    <span class="price">$30.00 <del>$50.00</del></span>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {##}
-        {#                        <!-- News block -->#}
-        {#                        <div class="shop-item">#}
-        {#                            <div class="inner-box">#}
-        {#                                <div class="image-box">#}
-        {#                                    <figure class="image"><img src="{% static 'images/resource/products/6.jpg' %}" alt=""></figure>#}
-        {#                                    <div class="overlay-box">#}
-        {#                                        <div class="btn-box">#}
-        {#                                            <a href="shopping-cart.html"><span class="icon fa fa-shopping-basket"></span></a>#}
-        {#                                            <a href="shop-single.html"><span class="icon fa fa-search"></span></a>#}
-        {#                                        </div>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                                <div class="lower-content clearfix">#}
-        {#                                    <h4 class="name"><a href="shop-single.html">Product Title</a></h4>#}
-        {#                                    <span class="price">$30.00 <del>$50.00</del></span>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </section>#}
-        {#        <!-- Products Section End -->#}
-
-        {% if brands %}
-            <!--Clients Section-->
-            <section class="clients-section">
-                <div class="auto-container">
-                    <!--Sponsors Carousel-->
-                    <ul class="sponsors-carousel owl-carousel owl-theme">
-                        {% for brand in brands %}
-                            <li class="slide-item">
-                                <figure class="image-box">
-                                    <a href="{{ brand.link }}">
-                                        {% thumbnail brand.picture "x80" format="PNG" as im %}
-                                            <img src="{{ im.url }}" alt="{{ about.picture_alternate_txt }}">
-                                        {% endthumbnail %}
-                                    </a>
-                                </figure>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </section>
-            <!--End Clients Section-->
-        {% endif %}
-        <!-- Offer Section -->
-        <section class="offer-section">
-            <div class="auto-container">
-                <div class="sec-title">
-                    <h2>در تماس باشید</h2>
-                    <div class="text">برای مشاوره رایگان و کسب اطلاعات بیشتر از طریق فرم زیر باما در تماس باشید<br></div>
-                </div>
-                <div class="row no-gutters">
-                    <div class="content-column col-xl-7 col-lg-6 col-md-12 col-sm-12 order-2">
-                        <div class="inner-column">
-                            <span class="title">پیشنهاد ویژه</span>
-                            <h2><span class="discount">{{ offer.discount }}%</span> {{ offer.title }}</h2>
-                            <div class="text">{{ offer.description|safe|linebreaksbr }}</div>
-                            <div class="fact-counter">
-                                {% thumbnail offer.picture "632x250" crop="center" format="PNG" as im %}
-                                    <img src="{{ im.url }}" alt="{{ about.picture.altarnate_txt }}">
-                                {% endthumbnail %}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-column col-xl-5 col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="discount-form">
-                                <div class="text">فرم را پر کنید، ما برای جزئیات بیشتر با شما تماس می گیریم.</div>
-                                <!--Comment Form-->
-                                <form id="contact__form" method="post">
-                                    <div class="form-group">
-                                        <div class="response"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" name="name" class="youre_name" placeholder="نام شما *">
-                                    </div>
-                                    <small id="errorName" class="d-none text-danger"></small>
-                                    <div class="form-group">
-                                        <input type="text" name="phone_number" class="phone_number" placeholder="شماره تلفن * (در سایت قابل مشاهده نیست)">
-                                    </div>
-                                    <small id="errorPhone" class="d-none text-danger"></small>
-                                    <div class="form-group">
-                                        <textarea name="message" class="message" placeholder="متن پیام *"></textarea>
-                                    </div>
-                                    <small id="errorMessage" class="d-none text-danger"></small>
-                                    <div class="form-group">
-                                        <button class="theme-btn btn-style-two" type="submit" id="submit" name="submit-form">
-                                            <span class="btn-title">ثبت</span>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </section>
-        <!--End Offer Section -->
 
-        <!-- News Section -->
-        <section class="news-section">
+            <div class="btn-box text-center">
+                <a href="{% url 'pages:projects' %}" class="theme-btn btn-style-two"><span class="btn-title">همه پروژه‌ها</span></a>
+            </div>
+        </div>
+    </section>
+    <!-- End Projects Section -->
+
+    {% if choose_us %}
+        {% include 'partials/ChooseUs.html' %}
+    {% endif %}
+
+    {% if founders %}
+        <!-- Team Section -->
+        <section class="team-section">
             <div class="auto-container">
-                <div class="sec-title">
-                    <h2>News & Artical</h2>
-                    <div class="text">You read now our latest news and artical</div>
+                <div class="sec-title text-center">
+                    <h2>تیم ما</h2>
+                    <div class="text">ما یک تیم خبره داریم<br>که رویا را برای شما به واقعیت تبدیل می کند.</div>
                 </div>
 
                 <div class="row">
-                    <!-- News Block -->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'images/resource/news-1.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="lower-content">
-                                <div class="post-date"><span class="far fa-calendar"></span> Jan 01, 2020</div>
-                                <ul class="post-info">
-                                    <li><span class="far fa-user"></span> By Admin |</li>
-                                    <li><a href="#">General Carpentry</a></li>
-                                </ul>
-                                <h4><a href="blog-detail.html">Woodworker treak truned into furniture for exhibition.</a></h4>
-                                <div class="btn-box"><a href="#" class="read-more">Read More <span class="fa fa-arrow-right"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'images/resource/news-2.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="lower-content">
-                                <div class="post-date"><span class="far fa-calendar"></span> Jan 02, 2020</div>
-                                <ul class="post-info">
-                                    <li><span class="far fa-user"></span> By Admin |</li>
-                                    <li><a href="#">General Carpentry</a></li>
-                                </ul>
-                                <h4><a href="blog-detail.html">Home Repair and Maintain safe now in the rantain.</a></h4>
-                                <div class="btn-box"><a href="#" class="read-more">Read More <span class="fa fa-arrow-right"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'images/resource/news-3.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="lower-content">
-                                <div class="post-date"><span class="far fa-calendar"></span> Jan 03, 2020</div>
-                                <ul class="post-info">
-                                    <li><span class="far fa-user"></span> By Admin |</li>
-                                    <li><a href="#">General Carpentry</a></li>
-                                </ul>
-                                <h4><a href="blog-detail.html">Good furniture is now on persale in showroom in Dec.</a></h4>
-                                <div class="btn-box"><a href="#" class="read-more">Read More <span class="fa fa-arrow-right"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
+                    {% include 'partials/team.html' %}
                 </div>
             </div>
         </section>
-        <!--End News Section Two -->
+        <!--End Team Section -->
+    {% endif %}
 
-        <!-- Main Footer -->
-        <footer class="main-footer" style="background-image: url({% static 'images/background/12.png' %});">
-            <div class="auto-container">
-                <!--Widgets Section-->
-                <div class="widgets-section">
-                    <div class="row">
-                        <!--Footer Column-->
-                        <div class="footer-column col-xl-4 col-lg-5 col-md-12 col-sm-12">
-                            <div class="footer-widget about-widget">
-                                <div class="footer-logo">
-                                    <figure class="image">
-                                        <a href="{% url 'pages:home' %}">
-                                            {% thumbnail setting.logo "90" format="PNG" as im %}
-                                                <img src="{{ im.url }}" alt="{{ setting.logo_alternate_text }}">
-                                            {% endthumbnail %}
-                                        </a>
-                                    </figure>
-                                </div>
-                                <div class="widget-content">
-                                    <div class="text">
-                                        {{ setting.description|safe|linebreaksbr }}
-                                    </div>
-                                    <ul class="contact-list">
-                                        <li><span class="fa fa-map-marker"></span>{{ setting.address }}</li>
-                                        <li><span class="fa fa-envelope"></span> <a href="mailto:Supportyou@demo.com">{{ setting.email }}</a></li>
-                                        <li><span class="fa fa-phone-volume"></span><a href="tel:1-800-985-357">{{ setting.phone_number }}</a></li>
-                                    </ul>
-                                </div>
+
+    {% include 'partials/brands.html' %}
+
+
+    {% include 'partials/contact.html' %}
+
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="auto-container">
+            <div class="sec-title">
+                <h2>اخبار و مقاله‌ها</h2>
+                <div class="text">باما بروز باشید. شما اکنون آخرین اخبار و مقاله ما را می خوانید</div>
+            </div>
+
+            <div class="row">
+                {% for blog in blogs %}
+                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <a href="{{ blog.get_absolute_url }}">
+                                        {% thumbnail blog.picture "370" format="PNG" as im %}
+                                            <img src="{{ im.url }}" alt="{{ blog.picture_alternate_text }}">
+                                        {% endthumbnail %}
+                                    </a>
+                                </figure>
                             </div>
-                        </div>
-
-                        <!--Footer Column-->
-                        <div class="footer-column col-xl-5 col-lg-7 col-md-12 col-sm-12">
-                            <!--Footer Column-->
-                            <div class="footer-widget links-widget">
-                                <div class="row">
-                                    <div class="col-lg-7 col-md-6">
-                                        <h2 class="widget-title">سرویس ها</h2>
-                                        <!--Footer Column-->
-                                        <div class="widget-content">
-                                            <ul class="list-style-two">
-                                                <li><a href="services.html">همه سرویس ها</a></li>
-                                                <li><a href="service-detail.html">نجاری عمومی</a></li>
-                                                <li><a href="service-detail.html">بازسازی مبلمان</a></li>
-                                                <li><a href="service-detail.html">نقاشی های آویز</a></li>
-                                                <li><a href="service-detail.html">تولید مبلمان</a></li>
-                                                <li><a href="service-detail.html">کار تجاری</a></li>
-                                                <li><a href="service-detail.html">طراحی مبلمان</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-5 col-md-6">
-                                        <h3 class="widget-title">لینک های مفید</h3>
-                                        <!--Footer Column-->
-                                        <div class="widget-content">
-                                            <ul class="list-style-two">
-                                                <li><a href="services.html">درباره ما</a></li>
-                                                <li><a href="service-detail.html">تیم ما</a></li>
-                                                <li><a href="service-detail.html">قیمت ها</a></li>
-                                                <li><a href="service-detail.html">پرسش‌های متداول</a></li>
-                                                <li><a href="service-detail.html">نمونه کارها</a></li>
-                                                <li><a href="service-detail.html">فروشگاه</a></li>
-                                                <li><a href="service-detail.html">تماس باما</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Footer Column-->
-                        <div class="footer-column col-xl-3 col-lg-6 col-md-12 col-sm-12">
-                            <div class="footer-widget subscribe-widget">
-                                <h2 class="widget-title">خبرنامه</h2>
-                                <div class="widget-content">
-                                    <div class="text">به روز باشید. آخرین اخبار، نکات نجاری و پیشنهادات ویژه ما را دنبال کنید.</div>
-
-                                    <!--Subscribe Form-->
-                                    <div class="subscribe-form">
-                                        <form id="Subscribe__form" method="post">
-                                            <div class="form-group">
-                                                <input type="email" name="email" id="subscribe-email" value="" placeholder="ایمیل خود را وارد کنید" required>
-                                                <small id="errorEmail" class="d-none text-danger"></small>
-                                                <button type="submit" class="theme-btn"><i class="fa fa-paper-plane"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <ul class="social-links">
-                                        {% for social in socials %}
-                                            <li><a href="{{ social.link }}"><i class="fab fa-{{ social.name }}"></i></a></li>
-                                        {% endfor %}
-                                    </ul>
+                            <div class="lower-content">
+                                <div class="post-date"><span class="far fa-calendar"></span> {{ blog.created }}</div>
+                                <h4><a href="{{ blog.get_absolute_url }}">{{ blog.summary }}</a></h4>
+                                <div class="btn-box">
+                                    <a href="{{ blog.get_absolute_url }}" class="read-more">ادامه مطلب <span class="fa fa-arrow-right"></span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-
-            <!--Footer Bottom-->
-            <div class="footer-bottom">
-                <div class="auto-container">
-                    <div class="copyright-text">Copyrights 2021. All Rights are Reserved by <a href="https://hasanmohammadian.ir">Hasan Mohammadian</a></div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Main Footer -->
-    </div>
+        </div>
+    </section>
+    <!--End News Section Two -->
 
 {% endblock %}

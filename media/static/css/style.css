@@ -166,7 +166,7 @@ body {
     background: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 a {
@@ -461,7 +461,7 @@ ul, li {
     font-weight: 400;
     padding-left: 30px;
     margin-bottom: 5px;
-    font-family: "Montserrat", sans-serif;
+    font-family: "IRANSans", sans-serif;
 }
 
 .list-style-two li a {
@@ -547,9 +547,21 @@ ul, li {
     height: 100%;
     z-index: 999999;
     background-color: #ffffff;
+}
+
+.subloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(../images/icons/preloader.svg);
+    background-image: url(../images/preloader.svg);
+    animation: fa-spin 2s linear infinite;
+    -webkit-animation: fa-spin 2s linear infinite;
+    -moz-animation: fa-spin 2s linear infinite;
+    -ms-animation: fa-spin 2s linear infinite;
+    -o-animation: fa-spin 2s linear infinite;
 }
 
 img {
@@ -771,7 +783,7 @@ img {
 
 .main-header .header-lower {
     position: relative;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 .main-header .header-lower .logo-outer {
@@ -809,7 +821,7 @@ img {
 .main-menu {
     position: relative;
     float: left;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .main-menu .navbar-header {
@@ -843,7 +855,7 @@ img {
     text-align: center;
     opacity: 1;
     font-weight: 500;
-    color: #353535;
+    color: #FFFFFF;
     font-size: 18px;
     line-height: 30px;
     padding: 0;
@@ -1608,7 +1620,7 @@ img {
     width: 100%;
     padding: 0px 0px;
     z-index: 99999;
-    background: #ffffff;
+    background: #000000;
     box-shadow: 0 0 20px rgba(0, 0, 0, .05);
 }
 
@@ -1652,7 +1664,7 @@ img {
 .sticky-header .main-menu .navigation > li.current-menu-item > a {
     opacity: 1;
     color: #ab7442;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 .sticky-header .main-menu .navigation > li:before,
@@ -1727,7 +1739,7 @@ img {
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    background: #ffffff;
+    background: #000000;
     padding: 0px 0px;
     z-index: 5;
     opacity: 0;
@@ -1811,7 +1823,7 @@ img {
     line-height: 20px;
     padding: 7px 25px;
     font-size: 16px;
-    color: #353535;
+    color: #FFFFFF;
     font-weight: 500;
     text-transform: capitalize;
 }
@@ -1847,7 +1859,7 @@ img {
     font-size: 12px;
     line-height: 40px;
     border-left: 1px solid #fafafa;
-    color: #353535;
+    color: #FFFFFF;
     cursor: pointer;
     z-index: 5;
     -webkit-transition: all 300ms ease;
@@ -2212,7 +2224,7 @@ img {
     line-height: 1.2em;
     z-index: 99;
     color: #ffffff;
-    font-family: 'PT Serif', serif;
+    font-family: 'IRANSans', serif;
     margin-bottom: 10px;
 }
 
@@ -2744,7 +2756,7 @@ img {
     font-weight: 500;
     text-transform: capitalize;
     margin-bottom: 30px;
-    font-family: 'PT Serif', serif;
+    font-family: 'IRANSans', serif;
 }
 
 .banner-section-two .text {
@@ -2840,7 +2852,7 @@ img {
     font-weight: 600;
     text-transform: capitalize;
     margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .video-banner .text {
@@ -3311,7 +3323,7 @@ img {
     line-height: 1.2em;
     color: #353535;
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
     -ms-transition: all 300ms ease;
@@ -4163,7 +4175,7 @@ img {
     font-weight: 700;
     margin-right: 10px;
     color: #ab7442;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .about-us .about-years h3 {
@@ -5316,7 +5328,7 @@ img {
     position: relative;
     display: inline-block;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -7113,7 +7125,7 @@ img {
     font-size: 14px;
     line-height: 20px;
     color: #ffffff;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .news-block .post-info {
@@ -7128,7 +7140,7 @@ img {
     line-height: 24px;
     color: #353535;
     font-weight: 400;
-    font-family: "Poppins", sans-serif;
+    font-family: "IRANSans", sans-serif;
 }
 
 .news-block .post-info li a {
@@ -7497,7 +7509,7 @@ img {
     font-weight: 600;
     margin: 0;
     display: inline-block;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .blog-detail .post-share-options .tags {
@@ -7662,7 +7674,7 @@ img {
     font-size: 300px;
     color: #353535;
     font-weight: 600;
-    font-family: 'PT Serif', serif;
+    font-family: 'IRANSans', serif;
     line-height: .7em;
     margin-bottom: 70px;
 }
@@ -9071,7 +9083,7 @@ form .response .text-info {
     -webkit-transition: all 500ms ease;
     -ms-transition: all 500ms ease;
     -o-transition: all 500ms ease;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .blog-cat li:last-child a {
@@ -9176,7 +9188,7 @@ form .response .text-info {
     font-weight: 600;
     color: #252525;
     margin-right: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .comments-area .comment-box .date {
@@ -9548,7 +9560,7 @@ form .response .text-info {
     font-weight: 600;
     color: #353535;
     line-height: 24px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .product-details .basic-details .details-header .item-price del {
@@ -9688,7 +9700,7 @@ form .response .text-info {
     border-radius: 0px;
     padding: 10px 30px;
     transition: all 500ms ease;
-    font-family: 'PT Serif', serif;
+    font-family: 'IRANSans', serif;
     border: 1px solid #353535;
 }
 
@@ -9737,7 +9749,7 @@ form .response .text-info {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 30px;
-    font-family: 'PT Serif', serif;
+    font-family: 'IRANSans', serif;
 }
 
 /*Comment Form*/
@@ -10034,7 +10046,7 @@ form .response .text-info {
     text-align: center;
     font-weight: 500;
     border-left: 1px solid #dddddd;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .cart-table tbody tr td.total {
@@ -10592,7 +10604,7 @@ form .response .text-info {
     padding: 30px 30px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
     margin-bottom: 50px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
 }
 
 .order-box .sec-title {
@@ -10975,7 +10987,7 @@ form .response .text-info {
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
     background-color: rgba(54, 54, 54, .40);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'IRANSans', sans-serif;
     margin: 0 15px 20px;
 }
 
@@ -10987,7 +10999,7 @@ form .response .text-info {
     padding: 60px 0px 30px;
     color: #ffffff;
     font-weight: 600;
-    font-family: 'PT Serif', serif;
+    font-family: 'IRANSans', serif;
 }
 
 .coming-soon .emailed-form {

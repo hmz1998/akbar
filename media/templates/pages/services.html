@@ -1,0 +1,49 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="auto-container">
+
+            <div class="row">
+                {% for service in services %}
+                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="{{ service.get_absolute_url }}">
+                                    {% thumbnail service.picture "370" format="PNG" as im %}
+                                        <img src="{{ im.url }}" alt="{{ service.picture_alternate_txt }}">
+                                    {% endthumbnail %}
+                                </a></figure>
+                            </div>
+                            <div class="lower-content text-center">
+                                <h4><a href="service-detail.html">{{ service.title }}</a></h4>
+                                <div class="text">{{ service.summary }}</div>
+                                <div class="btn-box pt-3">
+                                    <a href="{{ service.get_absolute_url }}" class="read-more">
+                                        جزئیات بیشتر...
+                                        <span class="fa fa-arrow-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--End News Section Two -->
+
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}

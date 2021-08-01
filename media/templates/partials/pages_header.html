@@ -1,0 +1,13 @@
+{% load static %}
+
+<!--Page Title-->
+<section class="page-title" style="background-image:url({{ setting.header_cover.url }});">
+    <div class="auto-container clearfix">
+        <h1>{{ view.page_name }}</h1>
+        <ul class="bread-crumb clearfix">
+            <li><a href="{% url 'pages:home' %}">خانه</a></li>
+            <li>{{ view.page_name }}</li>
+        </ul>
+    </div>
+</section>
+<!--End Page Title-->

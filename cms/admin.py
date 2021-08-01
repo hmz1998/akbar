@@ -8,6 +8,7 @@ from cms.models import (
     Social,
     Brand,
     Contact,
+    Faq,
     Offer,
     Support,
     Founder,
@@ -127,11 +128,10 @@ class BrandAdmin(AdminImageMixin, admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('-created',)
 
-#
-# @admin.register(Faq)
-# class FaqAdmin(admin.ModelAdmin):
-#     list_display = ('question', 'answer')
-#     list_filter = ('created',)
-#     search_fields = ('question', 'answer')
-#     ordering = ('-created',)
-#
+
+@admin.register(Faq)
+class FaqAdmin(admin.ModelAdmin):
+    list_display = ('question', 'answer')
+    list_filter = ('created',)
+    search_fields = ('question', 'answer')
+    ordering = ('-created',)

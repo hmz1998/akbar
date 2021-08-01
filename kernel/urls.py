@@ -21,6 +21,7 @@ from django.urls import path, re_path, include
 urlpatterns = [
     re_path(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     re_path(r'^secret/', admin.site.urls),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
     re_path(r'^', include('pages.urls')),
     re_path(r'^', include('cms.urls')),
 ]

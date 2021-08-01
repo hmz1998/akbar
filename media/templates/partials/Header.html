@@ -11,28 +11,8 @@
 
             <div class="top-right">
                 <ul class="contact-info clearfix">
-                    <li><span class="icon fa fa-phone-volume"></span> <a href="tel:09123334444">{{ setting.phone_number }}</a></li>
-                    <li><span class="icon fa fa-envelope"></span> <a href="mailto:demo@wooder.com">{{ setting.email }}</a></li>
-                    <!--Search Box-->
-                    <li class="search-box-outer">
-                        <div class="dropdown">
-                            <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><span class="icon fa fa-search"></span> جستجو
-                            </button>
-                            <div class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
-                                <div class="panel-outer">
-                                    <div class="form-container">
-                                        <form method="post" action="http://ary-themes.com/html/bold_touch/wooder/blog.html">
-                                            <div class="form-group">
-                                                <input type="search" name="field-name" value="" placeholder="Search Here" required>
-                                                <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <li><span class="icon fa fa-phone-volume"></span> <a href="tel:{{ setting.phone_number }}">{{ setting.phone_number }}</a></li>
+                    <li><span class="icon fa fa-envelope"></span> <a href="mailto:{{ setting.email }}">{{ setting.email }}</a></li>
                 </ul>
                 <ul class="social-icon-one clearfix">
                     {% for social in socials %}
@@ -67,51 +47,50 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="index-2.html">خانه</a></li>
-                                <li class="dropdown"><a href="about.html">درباره‌</a>
+                                <li class="{% if view.page_name == 'خانه' %} current{% endif %}"><a href="{% url 'pages:home' %}">خانه</a></li>
+                                <li class="dropdown{% if view.page_name == 'درباره ما' or view.page_name == 'سوالات متداول' or view.page_name == 'تیم ما' %} current{% endif %}">
+                                    <a href="{% url 'pages:about' %}">درباره‌</a>
                                     <ul>
-                                        <li><a href="about.html">درباره‌ما</a></li>
-                                        <li><a href="faqs.html">سوالات متداول</a></li>
-                                        <li><a href="team.html">تیم ما</a></li>
-                                        <li><a href="pricing.html">قیمت ها</a></li>
-                                        <li><a href="coming-soon.html">بزودی</a></li>
+                                        <li><a href="{% url 'pages:about' %}">درباره‌ما</a></li>
+                                        <li><a href="{% url 'pages:faq' %}">سوالات متداول</a></li>
+                                        <li><a href="{% url 'pages:team' %}">تیم ما</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="services.html">سرویس ها</a>
+                                <li class="dropdown{% if view.page_name == 'سرویس ها' %} current{% endif %}"><a href="{% url 'pages:services' %}">سرویس ها</a>
                                     <ul>
-                                        <li><a href="services.html">All Services</a></li>
-                                        <li><a href="service-detail.html">General Carpentry</a></li>
-                                        <li><a href="service-detail.html">Furniture Remodeling</a></li>
-                                        <li><a href="service-detail.html">Hang Paintings</a></li>
-                                        <li><a href="service-detail.html">Manufactur Furniture</a></li>
-                                        <li><a href="service-detail.html">Commercial work</a></li>
-                                        <li><a href="service-detail.html">Furniture Design</a></li>
+                                        {% for item in services %}
+                                            <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="projects.html">پروژه ها</a>
+                                <li class="dropdown{% if view.page_name == 'پروژه‌ها' %} current{% endif %}"><a href="{% url 'pages:projects' %}">پروژه ها</a>
                                     <ul>
-                                        <li><a href="projects.html">Projects</a></li>
-                                        <li><a href="project-detail.html">Project Detail</a></li>
+                                        <li><a href="{% url 'pages:projects' %}">همه پروژه‌ها</a></li>
+                                        {% for category in projects_categories %}
+                                            <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="blog.html">وبلاگ</a>
+                                <li class="dropdown{% if view.page_name == 'وبلاگ' or view.page_name == 'مطالب' %} current{% endif %}">
+                                    <a href="{% url 'pages:blogs' %}">وبلاگ</a>
                                     <ul>
-                                        <li><a href="blog.html">Blog with Sidebar</a></li>
-                                        <li><a href="blog-grid.html">Blog Grid View</a></li>
-                                        <li><a href="blog-detail.html">Blog Detail</a></li>
-                                        <li><a href="error-page.html">404 Error</a></li>
+                                        {% for cat in blog_categories %}
+                                            <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">فروشگاه</a>
-                                    <ul>
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="shop-single.html">Product Details</a></li>
-                                        <li><a href="shopping-cart.html">Cart Page</a></li>
-                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                        <li><a href="login.html">Registration Page</a></li>
-                                    </ul>
+                                {#                                <li class="dropdown{% if view.page_name == 'فروشگاه' %} current{% endif %}"><a href="#">فروشگاه</a>#}
+                                {#                                    <ul>#}
+                                {#                                        <li><a href="shop.html">Shop</a></li>#}
+                                {#                                        <li><a href="shop-single.html">Product Details</a></li>#}
+                                {#                                        <li><a href="shopping-cart.html">Cart Page</a></li>#}
+                                {#                                        <li><a href="checkout.html">Checkout Page</a></li>#}
+                                {#                                        <li><a href="login.html">Registration Page</a></li>#}
+                                {#                                    </ul>#}
+                                {#                                </li>#}
+                                <li {% if view.page_name == 'تماس باما' %}class="current"{% endif %}>
+                                    <a href="{% url 'pages:contact' %}">تماس</a>
                                 </li>
-                                <li><a href="contact.html">تماس</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -119,13 +98,13 @@
 
                     <div class="outer-box">
                         <!-- Shoppping Car -->
-                        <div class="cart-btn">
-                            <a href="#"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
-                        </div>
+{#                        <div class="cart-btn">#}
+{#                            <a href="#"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>#}
+{#                        </div>#}
 
                         <!-- Btn Box -->
                         <div class="btn-box">
-                            <a href="contact.html" class="theme-btn btn-style-one"><span class="btn-title">وقت ملاقات</span> </a>
+                            <a href="#" class="theme-btn btn-style-one"><span class="btn-title">{{ setting.name }}</span> </a>
                         </div>
                     </div>
                 </div>

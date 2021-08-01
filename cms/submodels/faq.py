@@ -7,9 +7,9 @@ from painless.utils.models.common import TimeStampModelMixin
 class Faq(TimeStampModelMixin):
     question = models.CharField(
         _("متن سوال"),
-        max_length=80,
+        max_length=200,
         validators=[
-            MaxLengthValidator(80),
+            MaxLengthValidator(200),
             MinLengthValidator(5),
         ],
     )

@@ -1,0 +1,90 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- Project Detail -->
+    <section class="project-detail">
+        <div class="auto-container">
+            <!-- Upper Box -->
+            <div class="upper-box">
+                <div class="single-item-carousel owl-carousel owl-theme">
+                    <figure class="image">
+                        <a href="{{ project.picture.url }}" class="lightbox-image">
+                            {% thumbnail project.picture "1170" format="PNG" as im %}
+                                <img src="{{ im.url }}" alt="{{ project.picture_alternate_text }}">
+                            {% endthumbnail %}
+                        </a>
+                    </figure>
+                    {% for item in project.galleries.all %}
+                        <figure class="image">
+                            <a href="{{ item.picture.url }}" class="lightbox-image">
+                                {% thumbnail item.picture "1170" format="PNG" as im %}
+                                    <img src="{{ im.url }}" alt="{{ item.picture_alternate_text }}">
+                                {% endthumbnail %}
+                            </a>
+                        </figure>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Lower Content -->
+            <div class="lower-content">
+                <div class="row">
+                    <div class="text-column col-lg-8 col-md-12 col-sm-12">
+                        <h2>{{ project.title }}</h2>
+                        {{ project.description|safe }}
+                    </div>
+
+                    <div class="info-column col-lg-4 col-md-12 col-sm-12">
+                        <h2>درباره پروژه</h2>
+                        <p>{{ project.summary }}</p>
+                        <ul class="project-info clearfix">
+                            <li>
+                                <span class="icon fa fa-user"></span>
+                                <strong>کارفرما</strong>
+                                <p>{{ project.client }}</p>
+                            </li>
+
+                            <li>
+                                <span class="icon fa fa-calendar-alt"></span>
+                                <strong>تاریخ شروع</strong>
+                                <p>{{ project.start_date }}</p>
+                            </li>
+
+                            <li>
+                                <span class="icon far fa-calendar-alt"></span>
+                                <strong>تاریخ پایان</strong>
+                                <p>{{ project.end_date }}</p>
+                            </li>
+
+                            <li>
+                                <span class="icon fa fa-dollar-sign"></span>
+                                <strong>قیمت</strong>
+                                <p>{{ project.price }}</p>
+                            </li>
+
+                            <li>
+                                <span class="icon fa fa-paper-plane"></span>
+                                <strong>آدرس</strong>
+                                <p>{{ project.location }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Project Detail -->
+
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% load thumbnail %}
+
+{% if brands %}
+    <!--Clients Section-->
+    <section class="clients-section">
+        <div class="auto-container">
+            <!--Sponsors Carousel-->
+            <ul class="sponsors-carousel owl-carousel owl-theme">
+                {% for brand in brands %}
+                    <li class="slide-item">
+                        <figure class="image-box">
+                            <a href="{{ brand.link }}">
+                                {% thumbnail brand.picture "x80" format="PNG" as im %}
+                                    <img src="{{ im.url }}" alt="{{ about.picture_alternate_txt }}">
+                                {% endthumbnail %}
+                            </a>
+                        </figure>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <!--End Clients Section-->
+{% endif %}

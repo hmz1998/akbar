@@ -1,0 +1,83 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    <!-- Sidebar Page Container -->
+    <div class="sidebar-page-container">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Content Side-->
+                <div class="content-side col-lg-8 col-md-12 col-sm-12 order-2">
+                    <div class="blog-detail">
+                        <div class="news-block-two">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image">
+                                        {% thumbnail blog.picture "1170" format="PNG" as im %}
+                                            <img src="{{ im.url }}" alt="{{ blog.picture_alternate_text }}">
+                                        {% endthumbnail %}
+                                    </figure>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="post-info">
+                                        <li><span class="far fa-calendar"></span>{{ blog.created }}</li>
+                                    </ul>
+                                    {{ blog.description|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                    <aside class="sidebar">
+
+                        <!-- Categories -->
+                        <div class="sidebar-widget blog-categories">
+                            <div class="sidebar-title"><h2>دسته‌بندی‌ها</h2></div>
+                            <ul class="cat-list">
+                                {% for cat in blog_categories %}
+                                    <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }} <span>({{ cat.blogs.count }})</span></a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <!-- Latest News -->
+                        <div class="sidebar-widget latest-news">
+                            <div class="sidebar-title"><h2>جدیدترین مطالب</h2></div>
+                            <div class="widget-content">
+                                {% for item in blogs %}
+                                    {% if item != blog %}
+                                        <article class="post">
+                                            <div class="post-thumb">
+                                                <a href="{{ item.get_absolute_url }}">
+                                                    {% thumbnail item.picture "85x85" crop="center" format="PNG" as im %}
+                                                        <img src="{{ im.url }}" alt="{{ item.picture_alternate_text }}">
+                                                    {% endthumbnail %}
+                                                </a>
+                                            </div>
+                                            <h3><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+                                            <div class="post-info">{{ item.created }}</div>
+                                        </article>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar Container -->
+
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}

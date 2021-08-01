@@ -1,4 +1,4 @@
-# from .submodels.faq import Faq
+from .submodels.faq import Faq
 from .submodels.about import About
 from .submodels.slider import Slider
 from .submodels.why_choose_us import ChooseUs

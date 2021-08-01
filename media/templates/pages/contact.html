@@ -1,0 +1,140 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+    {{ view.page_name }} | {{ service.title }}
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="auto-container">
+            <div class="upper-box">
+                <h2>برای ما پیام بگذارید!</h2>
+                <div class="text">برای دریافت مشاوره رایگان و برخورداری از تحفیف از طریق فرم زیر باما در تماس باشید!</div>
+            </div>
+            <div class="row clearfix">
+                <!-- Form Column -->
+                <div class="form-column col-lg-6 col-md-12 col-sm-12 order-2">
+                    <div class="inner-column">
+                        <div class="contact-form">
+                            <form method="post" id="contact__form">
+                                <div class="response"></div>
+
+                                <div class="form-group">
+                                    <input type="text" name="name" class="youre_name" placeholder="نام شما *">
+                                </div>
+                                <small id="errorName" class="d-none text-danger"></small>
+                                <div class="form-group">
+                                    <input type="text" name="phone_number" class="phone_number" placeholder="شماره تلفن * (در سایت قابل مشاهده نیست)">
+                                </div>
+                                <small id="errorPhone" class="d-none text-danger"></small>
+                                <div class="form-group">
+                                    <textarea name="message" class="message" placeholder="متن پیام *"></textarea>
+                                </div>
+                                <small id="errorMessage" class="d-none text-danger"></small>
+
+                                <div class="form-group">
+                                    <button class="theme-btn btn-style-two" type="submit" id="submit" name="submit-form"><span
+                                            class="btn-title">ثبت فرم</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="contact-column col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="row no-gutters">
+                            <div class="contact-info-block col-lg-6 col-md-6 col-sm-12">
+                                <div class="inner">
+                                    <span class="icon flaticon-worldwide"></span>
+                                    <h4>آدرس</h4>
+                                    {{ setting.address }}
+                                </div>
+                            </div>
+
+                            <div class="contact-info-block col-lg-6 col-md-6 col-sm-12">
+                                <div class="inner">
+                                    <span class="icon flaticon-phone"></span>
+                                    <h4>تماس</h4>
+                                    <p><a href="tel:{{ setting.phone_number }}">{{ setting.phone_number }}</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-block col-lg-6 col-md-6 col-sm-12">
+                                <div class="inner">
+                                    <span class="icon flaticon-email"></span>
+                                    <h4>ایمیل</h4>
+                                    <p><a href="mailto:{{ setting.email }}">{{ setting.email }}</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-block col-lg-6 col-md-6 col-sm-12">
+                                <div class="inner">
+                                    <span class="icon flaticon-clock"></span>
+                                    <h4>ساعت کاری</h4>
+                                    {{ setting.time_table }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Contact Section -->
+    <!-- Map Section -->
+    <section class="map-section w-100 " style="height: 450px;" id="app">
+    </section>
+    {#    <!-- End Map Section -->#}
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
+    <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var app = new Mapp({
+          element: '#app',
+          presets: {
+            latlng: {
+              lat: {{setting.get_location.0}},
+              lng: {{setting.get_location.1}},
+            },
+            zoom: 16
+          },
+          apiKey: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAxNTRkNWQ5ODFmZDg2NmY3MzBhOTRjNjMyYTUzODE4OTNhNmFmZjA5NTYzZDBhNmFmYjJjM2ZkYWY1NjNmNWE2MjBlNTlhNDY1YjNjZjk3In0.eyJhdWQiOiIxNTAyNSIsImp0aSI6IjAxNTRkNWQ5ODFmZDg2NmY3MzBhOTRjNjMyYTUzODE4OTNhNmFmZjA5NTYzZDBhNmFmYjJjM2ZkYWY1NjNmNWE2MjBlNTlhNDY1YjNjZjk3IiwiaWF0IjoxNjI3ODA5NTI2LCJuYmYiOjE2Mjc4MDk1MjYsImV4cCI6MTYzMDQwMTUyNiwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.CkPBPLjZZr10MYMteSKNEDmW8e6qYsQQxz6Ez5bZNMUVFMgpaBd6JFiuIyIwFwBR0XF5cT61VID6iF7uJbSVPJ52b8Z7qwyzFVHm1d5afC0uisEh70lsj7Z-fJf2NtZNZdmC4-I_0HD06BHx3SbRNRrXDc6UIvlJn5MA1y7t-rTnuuz5TLZNQ_bn8YrpL3qRU7c9gQzMFCl8ft7PHER476LrZK20yX0xWe2VRGnKL8dP-fvqY7q8hE0__zK02joqz9y7EbmcNMPAGEIZGkGQloIa4X2PV1GhA5E7ktfCA3j9J594IWwu0A4kjYwvCqWf2-0IMHgUBTHxh5tMXgbO4Q'
+        });
+
+        app.addLayers();
+
+        app.addMarker({
+          name: 'basic-marker',
+          latlng: {
+            lat: {{setting.get_location.0}},
+            lng: {{setting.get_location.1}},
+          },
+          popup: {
+            title: {
+              html: 'ما اینجا هستیم',
+            },
+            description: {
+              html: '{{ setting.address }}',
+            },
+            open: true,
+          },
+        });
+      });
+    </script>
+{% endblock %}

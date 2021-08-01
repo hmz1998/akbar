@@ -1,0 +1,108 @@
+{% load thumbnail %}
+{% load static %}
+
+<!-- Main Footer -->
+<footer class="main-footer" style="background-image: url({% static 'images/background/12.png' %});">
+    <div class="auto-container">
+        <!--Widgets Section-->
+        <div class="widgets-section">
+            <div class="row">
+                <!--Footer Column-->
+                <div class="footer-column col-xl-4 col-lg-5 col-md-12 col-sm-12">
+                    <div class="footer-widget about-widget">
+                        <div class="footer-logo">
+                            <figure class="image">
+                                <a href="{% url 'pages:home' %}">
+                                    {% thumbnail setting.logo "90" format="PNG" as im %}
+                                        <img src="{{ im.url }}" alt="{{ setting.logo_alternate_text }}">
+                                    {% endthumbnail %}
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="widget-content">
+                            <div class="text">
+                                {{ setting.description|safe }}
+                            </div>
+                            <ul class="contact-list">
+                                <li><span class="fa fa-map-marker"></span>{{ setting.address }}</li>
+                                <li><span class="fa fa-envelope"></span> <a href="mailto:Supportyou@demo.com">{{ setting.email }}</a></li>
+                                <li><span class="fa fa-phone-volume"></span><a href="tel:1-800-985-357">{{ setting.phone_number }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Footer Column-->
+                <div class="footer-column col-xl-5 col-lg-7 col-md-12 col-sm-12">
+                    <!--Footer Column-->
+                    <div class="footer-widget links-widget">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-6">
+                                <h2 class="widget-title">سرویس ها</h2>
+                                <!--Footer Column-->
+                                <div class="widget-content">
+                                    <ul class="list-style-two">
+                                        <li><a href="{% url 'pages:services' %}">همه سرویس ها</a></li>
+                                        {% for service in services %}
+                                            <li><a href="{{ service.get_absolute_url }}">{{ service.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-5 col-md-6">
+                                <h3 class="widget-title">لینک های مفید</h3>
+                                <!--Footer Column-->
+                                <div class="widget-content">
+                                    <ul class="list-style-two">
+                                        <li><a href="{% url 'pages:about' %}">درباره ما</a></li>
+                                        <li><a href="{% url 'pages:team' %}">تیم ما</a></li>
+                                        <li><a href="{% url 'pages:faq' %}">پرسش‌های متداول</a></li>
+                                        <li><a href="{% url 'pages:projects' %}">نمونه کارها</a></li>
+                                        {#                                        <li><a href="#">فروشگاه</a></li>#}
+                                        <li><a href="{% url 'pages:contact' %}">تماس باما</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Footer Column-->
+                <div class="footer-column col-xl-3 col-lg-6 col-md-12 col-sm-12">
+                    <div class="footer-widget subscribe-widget">
+                        <h2 class="widget-title">خبرنامه</h2>
+                        <div class="widget-content">
+                            <div class="text">به روز باشید. آخرین اخبار، نکات نجاری و پیشنهادات ویژه ما را دنبال کنید.</div>
+
+                            <!--Subscribe Form-->
+                            <div class="subscribe-form">
+                                <form id="Subscribe__form" method="post">
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="subscribe-email" value="" placeholder="ایمیل خود را وارد کنید" required>
+                                        <small id="errorEmail" class="d-none text-danger"></small>
+                                        <button type="submit" class="theme-btn"><i class="fa fa-paper-plane"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <ul class="social-links">
+                                {% for social in socials %}
+                                    <li><a href="{{ social.link }}"><i class="fab fa-{{ social.name }}"></i></a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Bottom-->
+    <div class="footer-bottom">
+        <div class="auto-container">
+            <div class="copyright-text">Copyrights 2021. All Rights are Reserved by <span style="font-size: 13pt; font-weight: bold">Araz</span></div>
+        </div>
+    </div>
+</footer>
+<!-- End Main Footer -->

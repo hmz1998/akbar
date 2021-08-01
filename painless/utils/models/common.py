@@ -28,6 +28,8 @@ class SKUMixin(models.Model):
         max_length=255,
         editable=False,
         unique=True,
+        null=True,
+        blank=True
     )
 
     class Meta:

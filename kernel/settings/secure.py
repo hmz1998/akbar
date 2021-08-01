@@ -5,6 +5,7 @@ from .base import BASE_DIR
 SECRET_KEY = config('SECRET_KEY')
 PREPEND_WWW = config('PREPEND_WWW', cast=bool)
 
+
 # ######################### #
 #         DATABASE          #
 # ######################### #

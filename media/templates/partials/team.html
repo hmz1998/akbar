@@ -1,0 +1,22 @@
+{% load thumbnail %}
+
+{% for founder in founders %}
+    <div class="team-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+        <div class="image-box">
+            <figure class="image">
+                {% thumbnail founder.picture "370" format="PNG" as im %}
+                    <img src="{{ im.url }}" alt="{{ founder.picture_alternate_txt }}">
+                {% endthumbnail %}
+            </figure>
+            <div class="info-box">
+                <h4 class="name">{{ founder.name }}</h4>
+                <span class="designation">{{ founder.job }}</span>
+                <ul class="social-links">
+                    {% for social in founder.socials.all %}
+                        <li><a href="{{ social.link }}"><span class="fab fa-{{ social.name }}"></span></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endfor %}

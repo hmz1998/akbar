@@ -1,0 +1,56 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- Projects Section -->
+    <section class="projects-section-two alternate">
+        <div class="auto-container">
+            <div class="sec-title text-center">
+                <h2>پروژه‌های {{ category.title }}</h2>
+            </div>
+            <div class="row">
+                {% for project in category.projects.all %}
+                    <div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    {% thumbnail project.picture "380x277" crop="center" format="PNG" as im %}
+                                        <img src="{{ im.url }}" alt="{{ project.picture_alternate_text }}">
+                                    {% endthumbnail %}
+                                </figure>
+                            </div>
+                            <div class="overlay-box">
+                                <div class="overlay-inner">
+                                    <h4>{{ project.title }}</h4>
+                                    <div class="icon-box">
+                                        <a href="{{ project.picture.url }}" class="lightbox-image" data-fancybox="gallery"><span
+                                                class="icon fa fa-expand-arrows-alt"></span></a>
+                                        <a href="{{ project.get_absolute.url }}"><span class="icon fa fa-search"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+            <div class="btn-box text-center">
+                <a href="{% url 'pages:projects' %}" class="theme-btn btn-style-two"><span class="btn-title">همه پروژه‌ها</span></a>
+            </div>
+        </div>
+    </section>
+    <!-- End Projects Section -->
+
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}

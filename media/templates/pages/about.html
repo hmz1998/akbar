@@ -1,0 +1,61 @@
+{% extends 'shared/_Base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+    {{ view.page_name }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'partials/pages_header.html' %}
+
+    <!-- About Us -->
+    <section class="about-us">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!-- Content Column -->
+                <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="sec-title">
+                            <h2>درباره ما</h2>
+                        </div>
+                        <div class="about-years"><span class="years">{{ about.experience }}</span>
+                            <h3>سال تجربه کاری</h3></div>
+                        <div class="text-box">
+                            {{ about.description|safe }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="video-box wow fadeIn">
+                            <figure class="image">
+                                {% thumbnail about.picture "570x570" format="PNG" as im %}
+                                    <img src="{{ im.url }}" alt="{{ about.picture_alternate_txt }}">
+                                {% endthumbnail %}
+                            </figure>
+                            <a href="{{ about.video.url }}" class="play-now" data-fancybox="gallery" data-caption="">
+                                <i class="icon flaticon-play-button-3" aria-hidden="true"></i>
+                                <span class="ripple"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Us -->
+
+    {% if choose_us %}
+        {% include 'partials/ChooseUs.html' %}
+    {% endif %}
+
+    {% include 'partials/contact.html' %}
+
+    {% if brands %}
+        {% include 'partials/brands.html' %}
+    {% endif %}
+
+{% endblock %}
